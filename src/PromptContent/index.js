@@ -5,10 +5,11 @@ import {
     Input,
     TextField,
     FilledInput,
+    LinearProgress
 } from '@material-ui/core';
 import {handleResponseList} from './../storage.js'
 import {questions} from './../Constants/questions'
-const TOTAL_Q = 7;
+
 
 export default class PromptContent extends React.Component{
     constructor(props){
@@ -21,7 +22,7 @@ export default class PromptContent extends React.Component{
 
     getAllResponses(){
         let responseList = questions.slice();
-        for(let i = 0; i < TOTAL_Q; i++){
+        for(let i = 0; i < questions.length; i++){
             responseList[i] = {
                 question: responseList[i], 
                 answer: this.state.responses[i]
@@ -32,13 +33,15 @@ export default class PromptContent extends React.Component{
 
     render(){
         if(this.state.qnum >= questions.length){
+            // Program enters here once we reached the end of the list of questions
             let responseList = this.getAllResponses();
 
-            for(let i = 0; i < TOTAL_Q; i++){
+            for(let i = 0; i < questions.length; i++){
                 responseList[i] = <li><b>{responseList[i].question + " "}</b> {responseList[i].answer}</li>
             }
             return (
-                <div>
+                <div className="wrapper">
+                    <LinearProgress variant="determinate" value={this.state.qnum / questions.length * 100}></LinearProgress>
                     <h2>DONE</h2>
                     <ul>
                     {responseList}
@@ -50,6 +53,8 @@ export default class PromptContent extends React.Component{
         return (
             <div className="wrapper">
                 <div className="content">
+                    <LinearProgress variant="determinate" value={this.state.qnum / questions.length * 100}></LinearProgress>
+                    <h1>Prompt {this.state.qnum + 1}</h1>
                     <div className="question">{questions[this.state.qnum]}</div>
                     <FilledInput 
                         type="text"
