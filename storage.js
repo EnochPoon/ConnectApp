@@ -1,20 +1,29 @@
 class weekly_responses {
     constructor(number)
     {
-        this.answers = Array(number).fill([" "," "," "," "," "," "," "]);
+        this.answers = Array(number);
+        for (let i = 0; i<number; i++) 
+        {
+            this.answers[i] = [" "," "," "," "," "," "," "];
+        }
+        this.number = number
     }
 
     addResponse(question_number, day, response) {
-        answers[question_number][day-1] = response;
+        this.answers[question_number][day-1] = response;
     }
 
     returnResponse(question_number, day) {
-        return(answers[question_number][day-1]);
+        return(this.answers[question_number][day-1]);
     }
 
-    returnResponse(question_number)
+    returnResponses(question_number)
     {
-        return(answers[question_number]);
+        return(this.answers[question_number]);
+    }
+
+    returnAllResponses () {
+        return(this.answers);
     }
 }
 
@@ -22,18 +31,19 @@ class response_record {
     constructor(number)
     {
         this.total_weeks = 0;
-        this.response_record = Array(0).fill(new weekly_responses(number));
+        this.response_record = Array(0);
     }
 
     add_week(responses_of_the_week)
     {
-        response_record.concat(responses_of_the_week);
-        total_weeks = total_weeks + 1;
+        //input weekly response object
+        this.response_record.push(responses_of_the_week);
+        this.total_weeks++;
     }
 
     return_week(week_number) 
     {
-        return(response_record[week_number]);
+        return(this.response_record[week_number - 1]);
     }
 
     return_all_question_responses(question_number)
@@ -46,4 +56,21 @@ class response_record {
         return total_response;
     }
 
+}
+var c = new weekly_responses(10)
+c.addResponse(1, 1, "I am cool")
+c.addResponse(1, 2, "It was a great day today")
+c.addResponse(1, 3, "It was a bad day today")
+c.addResponse(2, 1, "Hahahahahahahahahah!")
+console.log(c.returnResponses(1))
+//console.log(c.returnWeeklyResponses())
+var b = new response_record(10)
+b.add_week(c)
+
+console.log(b.return_week(1).returnResponses(1))
+var a = c.returnAllResponses();
+
+for (let i = 0; i < 7; i++)
+{
+    console.log(a[i]);
 }
