@@ -7,10 +7,8 @@ import {
     FilledInput,
 } from '@material-ui/core';
 import {handleResponseList} from './../storage.js'
+import {questions} from './../Constants/questions'
 const TOTAL_Q = 7;
-const sampleQ = ['What are your greatest accomplishments this week?',
-                 'How are you doing?', 
-                 'Did i stress you out?', 'What is this question?', 'Is this a lie?', 'Do you like pie', 'Is this the end?']
 
 export default class PromptContent extends React.Component{
     constructor(props){
@@ -22,7 +20,7 @@ export default class PromptContent extends React.Component{
     }
 
     getAllResponses(){
-        let responseList = sampleQ.slice();
+        let responseList = questions.slice();
         for(let i = 0; i < TOTAL_Q; i++){
             responseList[i] = {
                 question: responseList[i], 
@@ -33,7 +31,7 @@ export default class PromptContent extends React.Component{
     }
 
     render(){
-        if(this.state.qnum >= sampleQ.length){
+        if(this.state.qnum >= questions.length){
             let responseList = this.getAllResponses();
 
             for(let i = 0; i < TOTAL_Q; i++){
@@ -52,7 +50,7 @@ export default class PromptContent extends React.Component{
         return (
             <div className="wrapper">
                 <div className="content">
-                    <div className="question">{sampleQ[this.state.qnum]}</div>
+                    <div className="question">{questions[this.state.qnum]}</div>
                     <FilledInput 
                         type="text"
                         multiline={true}
