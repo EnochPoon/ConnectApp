@@ -1,20 +1,21 @@
 export default class weekly_responses {
     constructor(number)
     {
-        this.answers = Array(number);
+        this.answers = new Array(number);
         for (let i = 0; i<number; i++) 
         {
             this.answers[i] = [" "," "," "," "," "," "," "];
         }
-        this.number = number
+        this.number = number;
     }
 
     addResponse(question_number, day, response) {
-        this.answers[question_number][day-1] = response;
+        
+        this.answers[question_number][day] = response;
     }
 
     returnResponse(question_number, day) {
-        return(this.answers[question_number][day-1]);
+        return(this.answers[question_number][day]);
     }
 
     returnResponses(question_number)
@@ -31,7 +32,7 @@ class response_record {
     constructor(number)
     {
         this.total_weeks = 0;
-        this.response_record = Array(0);
+        this.response_record = new Array(0);
     }
 
     add_week(responses_of_the_week)
@@ -70,19 +71,23 @@ export function handleResponseList(responseList){
     questions. It should then manage the responseList with backend somehow. Somehow send
     all the responses to email?
     */
-    var today = new Date();
-    var day = today.toUTCString().getDay();
-    var i = new weekly_responses(8)
-    for(i = 0; i <= 8; i++) {
-        i.addResponse(i + 1, day, responseList[i].answer)
+    var today = new Date(Date.now());
+    var day = today.getUTCDay();
+    var wr = new weekly_responses(8)
+    for(let i = 0; i < 8; i++) {
+        wr.addResponse(i, day, responseList[i].answer)
     }
     
     if (day == 6) {
         var j = new response_record(8)
-        j.add_week(i)
+        j.add_week(wr)
     }
+
+    totalListLength = totalList.push(responseList);
 }
 
+export var totalList = Array(0);
+export var totalListLength = 0;
 
 /*
 var c = new weekly_responses(10)

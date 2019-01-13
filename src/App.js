@@ -17,12 +17,12 @@ class App extends Component {
       <div className="App">
         <div className="main-content">
         {/* <Daily onClick={handleNext} />*/}
-          <PromptContent />
+          {this.state.isDaily? <PromptContent />: <Archive />}
         </div>
         
         <span className="buttons">
-          <button type="button" onClick={() => {this.setState({isDaily: true})}}>Daily</button>
-          <button type="button" onClick={() => {this.setState({isDaily: false})}}>Archive</button>
+          {/* <button type="button" onClick={() => {this.setState({isDaily: true})}}>Daily</button>
+          <button type="button" onClick={() => {this.setState({isDaily: false})}}>Archive</button> */}
         </span>
       </div>
       

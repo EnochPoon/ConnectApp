@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import {handleResponseList} from './../storage.js'
 import {questions} from './../Constants/questions'
-
+import {totalList} from '../storage.js'
 
 export default class PromptContent extends React.Component{
     constructor(props){
@@ -17,6 +17,7 @@ export default class PromptContent extends React.Component{
         this.state = {
             qnum: 0,
             responses: [''],
+
         }
     }
 
@@ -32,16 +33,17 @@ export default class PromptContent extends React.Component{
     }
 
     render(){
+        const lineProgress = <LinearProgress variant="determinate" value={this.state.qnum / questions.length * 100}></LinearProgress>
         if(this.state.qnum >= questions.length){
             // Program enters here once we reached the end of the list of questions
             let responseList = this.getAllResponses();
-
+            handleResponseList(responseList);
             for(let i = 0; i < questions.length; i++){
                 responseList[i] = <li><b>{responseList[i].question + " "}</b> {responseList[i].answer}</li>
             }
             return (
                 <div className="wrapper">
-                    <LinearProgress variant="determinate" value={this.state.qnum / questions.length * 100}></LinearProgress>
+                    {lineProgress}
                     <h2>DONE</h2>
                     <ul>
                     {responseList}
@@ -53,7 +55,7 @@ export default class PromptContent extends React.Component{
         return (
             <div className="wrapper">
                 <div className="content">
-                    <LinearProgress variant="determinate" value={this.state.qnum / questions.length * 100}></LinearProgress>
+                    {lineProgress}
                     <h1>Prompt {this.state.qnum + 1}</h1>
                     <div className="question">{questions[this.state.qnum]}</div>
                     <FilledInput 
@@ -65,8 +67,21 @@ export default class PromptContent extends React.Component{
                         ></FilledInput>
                 </div>
                 <div className="buttons">
-                    <Button variant="contained" color="primary" disabled={this.state.qnum == 0} onClick={() => this.handleClick(-1)} type="button">Back</Button>
-                    <Button variant="contained" color="primary" onClick={() => this.handleClick(1)} type="button">Next</Button>
+                    <Button
+                        variant="contained" 
+                        color="primary"
+                        disabled={this.state.qnum == 0} 
+                        onClick={() => this.handleClick(-1)} 
+                        type="button">
+                            Back
+                        </Button>
+                    <Button 
+                        variant="contained" 
+                        color={this.state.qnum == questions.length - 1? 'secondary' : "primary"} 
+                        onClick={() => this.handleClick(1)} 
+                        type="button">
+                            {this.state.qnum == questions.length - 1? 'Submit All': 'Next'}
+                        </Button>
                 </div>
                 </div>
             
@@ -74,6 +89,9 @@ export default class PromptContent extends React.Component{
     }
 
     handleClick(direction){
+        if(direction == 1 && this.state.qnum == questions.length - 1){
+            if(!window.confirm("Are you sure you want to submit? Press OK to Submit, or press Cancel to go back and edit your responses."))return;
+        }
         if(this.state.responses.length <= this.state.qnum + 1){
             this.state.responses.push('');
         }
