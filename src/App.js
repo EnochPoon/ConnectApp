@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Daily from './Daily';
 import Archive from './Archive';
-
+import {recorded_responses, sampleQ} from './storage.js';
 
 class App extends Component {
   constructor(props){
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="main-content">
-          {this.state.isDaily? <Daily /> : <Archive />}
+          {this.state.isDaily? <Daily/> : <Archive />}
         </div>
         
         <span className="buttons">

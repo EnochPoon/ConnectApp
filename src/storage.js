@@ -58,8 +58,9 @@ export default class response_record {
 
 }
 
-var recorded_responses = new response_record(7);
-const sampleQ = ['What is one plus one?', 'Calculate the mass of the sun.', 'How are you doing?', 'Did i stress you out?', 'q5', 'q6', 'last'];
+export var recorded_responses = new response_record(7);
+export const sampleQ = ['What is one plus one?', 'Calculate the mass of the sun.', 'How are you doing?', 'Did i stress you out?', 'q5', 'q6', 'last'];
+export var number_of_weeks = 0;
 
 /*
 var c = new weekly_responses(10)
