@@ -2,7 +2,7 @@
   flex-direction: column;
   height: 100vh;
   display: flex;
-  background-color: gray;
+  background-color: #c4c460;
 }
 
 .buttons{
@@ -19,5 +19,9 @@ button{
 .main-content{
   display: flex;
   flex-direction: row;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  width: 100%;
   flex: 5;
 }

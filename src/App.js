@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Daily from './Daily';
 import Archive from './Archive';
-
+import PromptContent from './PromptContent';
 
 class App extends Component {
   constructor(props){
@@ -16,7 +16,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="main-content">
-          {this.state.isDaily? <Daily /> : <Archive />}
+        {/* <Daily onClick={handleNext} />*/}
+          <PromptContent />
         </div>
         
         <span className="buttons">
@@ -26,6 +27,10 @@ class App extends Component {
       </div>
       
     );
+  }
+
+  handleNext(){
+    
   }
 }
 

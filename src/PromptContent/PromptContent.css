@@ -6,6 +6,7 @@
     flex-direction: column;
     flex: 1;
     height: 100%;
+    
 }
 
 .content{
@@ -13,6 +14,7 @@
     display: flex;
     flex-direction: column;
     flex: 2;
+    width: 100%;
 }
 
 .question{
@@ -20,14 +22,8 @@
     align-self: center;
     flex: 1;
 }
-  
-Input{
-    display: flex;
-    width: 100%;
-    flex: 2;
-    
-}
 
 .buttons{
     flex: 1;
+    
 }

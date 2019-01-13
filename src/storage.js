@@ -27,7 +27,7 @@ export default class weekly_responses {
     }
 }
 
-export default class response_record {
+class response_record {
     constructor(number)
     {
         this.total_weeks = 0;
@@ -49,7 +49,7 @@ export default class response_record {
     return_all_question_responses(question_number)
     {
         var total_response = Array(0);
-        for(i = 0; i < total_weeks; i++)
+        for(let i = 0; i < this.total_weeks; i++)
         {
             total_response.concat(response_record[i].returnresponse(question_number));
         }
@@ -59,7 +59,19 @@ export default class response_record {
 }
 
 var recorded_responses = new response_record(7);
-const sampleQ = ['What is one plus one?', 'Calculate the mass of the sun.', 'How are you doing?', 'Did i stress you out?', 'q5', 'q6', 'last'];
+
+export function handleResponseList(responseList){
+    /* TODO: responseList is a list of question and answer pairs.
+    For the i^th pair, get the question using responseList[i].question,
+    and get the answer using responseList[i].answer */
+
+    /*
+    This function is called when the user finishes answering all
+    questions. It should then manage the responseList with backend somehow. Somehow send
+    all the responses to email?
+    */
+}
+
 
 /*
 var c = new weekly_responses(10)
