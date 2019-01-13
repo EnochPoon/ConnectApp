@@ -70,6 +70,17 @@ export function handleResponseList(responseList){
     questions. It should then manage the responseList with backend somehow. Somehow send
     all the responses to email?
     */
+    var today = new Date();
+    var day = today.toUTCString().getDay();
+    var i = new weekly_responses(8)
+    for(i = 0; i <= 8; i++) {
+        i.addResponse(i + 1, day, responseList[i].answer)
+    }
+    
+    if (day == 6) {
+        var j = new response_record(8)
+        j.add_week(i)
+    }
 }
 
 
