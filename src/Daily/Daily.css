@@ -17,11 +17,11 @@
 
 .question{
     display: flex;
-    text-align: center;
+    align-self: center;
     flex: 1;
 }
   
-input{
+Input{
     display: flex;
     width: 100%;
     flex: 2;
