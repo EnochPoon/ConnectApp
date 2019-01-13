@@ -17,5 +17,6 @@ button{
 
 .main-content{
   display: flex;
+  flex-direction: row;
   flex: 5;
 }

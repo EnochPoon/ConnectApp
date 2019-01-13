@@ -1,0 +1,33 @@
+.wrapper{
+    padding: 5%;
+    display: flex;
+    align-self: center;
+    
+    flex-direction: column;
+    flex: 1;
+    height: 100%;
+}
+
+.content{
+    
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+.question{
+    display: flex;
+    text-align: center;
+    flex: 1;
+}
+  
+input{
+    display: flex;
+    width: 100%;
+    flex: 2;
+    
+}
+
+.buttons{
+    flex: 1;
+}
